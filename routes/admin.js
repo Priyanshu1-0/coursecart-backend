@@ -113,14 +113,19 @@ adminRouter.put("/course", adminMiddleware, async function(req,res){
     })
 
     res.json({
-        message: "Course Created",
+        message: "Course Updated",
         courseId: course._id
     })
 });
 
-adminRouter.get("/course/bulk", function(req,res){
+adminRouter.get("/course/bulk", adminMiddleware, async function(req,res){
+    const adminId = req.userId;
+    const courses = await courseModel.find({
+        creatorId: adminId
+    })
     res.json({
-        message: "Admin Courses"
+        message: "Admin Courses",
+        courses
     })
 });
 
