@@ -1,5 +1,5 @@
-const JWT_USER_SECRET = "23jdskq21__!"
-const JWT_ADMIN_SECRET = "!jsdad5a7@jn";
+const JWT_USER_SECRET = process.env.JWT_USER_SECRET;
+const JWT_ADMIN_SECRET = process.env.JWT_ADMIN_SECRET;
 
 module.exports = {
     JWT_ADMIN_SECRET: JWT_ADMIN_SECRET,
