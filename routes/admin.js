@@ -98,9 +98,21 @@ adminRouter.post("/course", adminMiddleware, async function(req,res){
     })
 });
 
-adminRouter.put("/course", function(req,res){
+adminRouter.put("/course", async function(req,res){
+    const adminId = req.userId;
+    const { title, description, imageUrl, price, courseId} = req.body;
+
+    const course = await courseModel.updateOne(
+        {_id: courseId},{
+      title: title,
+      description: description,
+      imageUrl: imageUrl,
+      price: price,
+    })
+
     res.json({
-        message: "Admin Courses"
+        message: "Course Created",
+        courseId: course._id
     })
 });
 
